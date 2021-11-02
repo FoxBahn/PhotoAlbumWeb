@@ -1,16 +1,20 @@
 package com.example.photoalbumweb.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "photo", schema = "Phillip")
-public class Photo {
+public class Photo implements Serializable {
+
+    private static final long serialVersionUID = 6742731244607745540L;
+
 
     @Id
     @Column(name = "idPhoto")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long idPhoto;
 
     @Column(name = "Type")
     private String type;
@@ -24,8 +28,8 @@ public class Photo {
     @Column(name = "Photo_Name")
     private String photoName;
 
-    public Photo(long id, String type, String urlLocation, Long uploadIdUser, String photoName) {
-        this.id = id;
+    public Photo(long idPhoto, String type, String urlLocation, Long uploadIdUser, String photoName) {
+        this.idPhoto = idPhoto;
         this.type = type;
         this.urlLocation = urlLocation;
         this.uploadIdUser = uploadIdUser;
@@ -43,11 +47,11 @@ public class Photo {
     }
 
     public long getId() {
-        return id;
+        return idPhoto;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.idPhoto = idPhoto;
     }
 
     public String getType() {
@@ -98,7 +102,7 @@ public class Photo {
     @Override
     public String toString() {
         return "Photo{" +
-                "id=" + id +
+                "idPhoto=" + idPhoto +
                 ", type='" + type + '\'' +
                 ", urlLocation='" + urlLocation + '\'' +
                 ", uploadIdUser=" + uploadIdUser +

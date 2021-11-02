@@ -1,16 +1,20 @@
 package com.example.photoalbumweb.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "user", schema = "Phillip")
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 6496069050984258296L;
+
 
     @Id
     @Column(name = "idUser")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long idUser;
 
     @Column(name = "FName")
     private String firstName;
@@ -31,7 +35,17 @@ public class User {
     private String password;
 
     public User(String firstName, String lastName, String cell, String email, String type, String password) {
-        super();
+//        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.cell = cell;
+        this.email = email;
+        this.type = type;
+        this.password = password;
+    }
+
+    public User(long idUser, String firstName, String lastName, String cell, String email, String type, String password) {
+        this.idUser = idUser;
         this.firstName = firstName;
         this.lastName = lastName;
         this.cell = cell;
@@ -45,11 +59,11 @@ public class User {
     }
 
     public long getId() {
-        return id;
+        return idUser;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long idUser) {
+        this.idUser = idUser;
     }
 
     public String getFirstName() {
@@ -116,6 +130,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
+                "idUser =" + idUser +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", cell='" + cell + '\'' +
