@@ -1,12 +1,10 @@
 package com.example.photoalbumweb.controller;
 
 import com.example.photoalbumweb.model.Photo;
+import com.example.photoalbumweb.model.User;
 import com.example.photoalbumweb.repository.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,4 +22,11 @@ public class PhotoController {
     public List<Photo> getAllPhotos() {
         return photoRepository.findAll();
     }
+
+    // create image metadata (postmappping)
+    @PostMapping("/photos")
+    public Photo createPhoto(@RequestBody Photo photo){
+        return photoRepository.save(photo);
+    }
+
 }

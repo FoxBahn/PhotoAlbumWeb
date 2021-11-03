@@ -35,7 +35,7 @@ public class User implements Serializable {
     private String password;
 
     public User(String firstName, String lastName, String cell, String email, String type, String password) {
-//        super();
+        super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.cell = cell;

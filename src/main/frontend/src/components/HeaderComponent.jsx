@@ -11,9 +11,12 @@ export default class HeaderComponent extends Component {
     return (
       <Paper elevation={3}>
         <header margin={20}>
-          <nav className="navbar navbar-expand-md navbar-dark bg-dark display flex">
+          <nav className="navbar navbar-expand-md navbar-dark bg-dark">
             <div>
-              <a className="navbar-brand"> Photo Album Application</a>
+              {/*the <a></a> tag is used to put a link to another website in a word*/}
+              <a className="navbar-brand ml=auto div">
+                Photo Album Application
+              </a>
             </div>
           </nav>
         </header>
