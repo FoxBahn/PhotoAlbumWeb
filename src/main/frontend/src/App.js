@@ -11,14 +11,13 @@ function App() {
     <div>
       <Router>
         <HeaderComponent />
-
-        <Switch>
-          http://localhost:3000/add-user
-          <Route path="/" component={ListUserComponent}></Route>
-          <Route path="/users" component={ListUserComponent}></Route>
-          <Route path="/add-user" component={CreateUserComponent}></Route>
-        </Switch>
-
+        <div className="container">
+          <Switch>
+            <Route path="/" exact component={ListUserComponent}></Route>
+            <Route path="/users" component={ListUserComponent}></Route>
+            <Route path="/add-users" component={CreateUserComponent}></Route>
+          </Switch>
+        </div>
         <FooterComponent />
       </Router>
     </div>

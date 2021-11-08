@@ -20,8 +20,9 @@ export default class ListUserComponent extends Component {
     });
   }
 
+  // METHOD to rout to the "/add-user" PAGE
   addUser() {
-    this.props.history.push("/add-user");
+    this.props.history.push("/add-users");
   }
 
   /* uSER tabe and the table BODY */
