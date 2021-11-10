@@ -4,6 +4,7 @@ import com.example.photoalbumweb.exception.ResourceNotFoundException;
 import com.example.photoalbumweb.model.User;
 import com.example.photoalbumweb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class UserController {
     }
 
     // get user by id REST(getmapping)
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User does not exist with ID: " + id));
@@ -39,7 +40,7 @@ public class UserController {
     }
 
     // update user by id REST(PutMapping)
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User does not exist with ID: " + id));
@@ -53,7 +54,16 @@ public class UserController {
         User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
     }
-    //
+
+    //delete user by id
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable(name = "id") Long id){
+        userRepository.deleteById(id);
+        return new ResponseEntity<>("User with ID :" + id + " was deleted successfully", HttpStatus.OK);
+    }
+
+
+
 }
 
 

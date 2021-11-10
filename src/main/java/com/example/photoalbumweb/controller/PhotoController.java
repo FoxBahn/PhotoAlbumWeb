@@ -22,6 +22,7 @@ public class PhotoController {
     //get all photo
     @GetMapping("")
     public List<Photo> getAllPhotos() {
+        List<Photo> photos = photoRepository.findAll();
         return photoRepository.findAll();
     }
 
@@ -38,6 +39,12 @@ public class PhotoController {
                 .orElseThrow(() -> new ResourceNotFoundException("Photo does not exist with ID: " + id));
         return ResponseEntity.ok(photo);
     }
+
+    //delete images by id
+
+
+    //delete images by url
+
 
     //get images by url?
 

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
-@Data
+
 @Entity
 @Table(name = "user", schema = "Phillip")
 public class User implements Serializable {
@@ -20,7 +20,7 @@ public class User implements Serializable {
     @Id
     @Column(name = "idUser")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUser;
+    private long idUser;
 
     @NotNull
     @Column(name = "FName")
@@ -48,8 +48,9 @@ public class User implements Serializable {
 
 //    @JsonIgnore
     @JsonManagedReference
-    @OneToMany(mappedBy = "users")
-    private Set<Photo> photos = new HashSet<>();
+    @OneToMany(mappedBy = "users",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
+    private Set<Photo> photos = new HashSet<Photo>();
+
 
 
     public User(String firstName, String lastName, String cell, String email, String type, String password) {
@@ -61,10 +62,8 @@ public class User implements Serializable {
         this.password = password;
     }
 
-
     public User() {
     }
-
 
 
     public long getId() {
@@ -129,24 +128,24 @@ public class User implements Serializable {
 
     public void setPhotos(Set<Photo> photos) {
         this.photos = photos;
-
-//        for(Photo p : photos)
-//        {
-//            p.setUsers(this);
-//        }
+        for(Photo p : photos)
+        {
+            p.setUsers(this);
+        }
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return Objects.equals(getIdUser(), user.getIdUser()) && getFirstName().equals(user.getFirstName()) && getLastName().equals(user.getLastName()) && getCell().equals(user.getCell()) && getEmail().equals(user.getEmail()) && getType().equals(user.getType()) && getPassword().equals(user.getPassword());
+        return Objects.equals(getId(), user.getId()) && getFirstName().equals(user.getFirstName()) && getLastName().equals(user.getLastName()) && getCell().equals(user.getCell()) && getEmail().equals(user.getEmail()) && getType().equals(user.getType()) && getPassword().equals(user.getPassword());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIdUser(), getFirstName(), getLastName(), getCell(), getEmail(), getType(), getPassword());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getCell(), getEmail(), getType(), getPassword());
     }
 
     @Override
