@@ -5,6 +5,7 @@ import com.example.photoalbumweb.model.Photo;
 import com.example.photoalbumweb.model.User;
 import com.example.photoalbumweb.repository.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +43,11 @@ public class PhotoController {
 
     //delete images by id
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deletePhoto(@PathVariable(name = "id") Long id){
+        photoRepository.deleteById(id);
+        return new ResponseEntity<>("Photo with ID :" + id + " was deleted successfully", HttpStatus.OK);
+    }
 
     //delete images by url
 
