@@ -2,40 +2,57 @@ package com.example.photoalbumweb.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.*;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
+import org.jetbrains.annotations.NotNull;
+
+@Data
 @Entity
 @Table(name = "user", schema = "Phillip")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 6496069050984258296L;
 
-
     @Id
     @Column(name = "idUser")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idUser;
+    private Long idUser;
 
+    @NotNull
     @Column(name = "FName")
     private String firstName;
 
+    @NotNull
     @Column(name = "LName")
     private String lastName;
 
+    @NotNull
     @Column(name = "Cell")
     private String cell;
 
+    @NotNull
     @Column(name = "Email")
     private String email;
 
+    @NotNull
     @Column(name = "Type")
     private String type;
 
+    @NotNull
     @Column(name = "Password")
     private String password;
 
+//    @JsonIgnore
+    @JsonManagedReference
+    @OneToMany(mappedBy = "users")
+    private Set<Photo> photos = new HashSet<>();
+
+
     public User(String firstName, String lastName, String cell, String email, String type, String password) {
-        super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.cell = cell;
@@ -44,19 +61,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(long idUser, String firstName, String lastName, String cell, String email, String type, String password) {
-        this.idUser = idUser;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.cell = cell;
-        this.email = email;
-        this.type = type;
-        this.password = password;
-    }
 
     public User() {
-
     }
+
+
 
     public long getId() {
         return idUser;
@@ -114,28 +123,42 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public Set<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Set<Photo> photos) {
+        this.photos = photos;
+
+//        for(Photo p : photos)
+//        {
+//            p.setUsers(this);
+//        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return getId() == user.getId() && Objects.equals(getFirstName(), user.getFirstName()) && Objects.equals(getLastName(), user.getLastName()) && Objects.equals(getCell(), user.getCell()) && Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getType(), user.getType()) && Objects.equals(getPassword(), user.getPassword());
+        return Objects.equals(getIdUser(), user.getIdUser()) && getFirstName().equals(user.getFirstName()) && getLastName().equals(user.getLastName()) && getCell().equals(user.getCell()) && getEmail().equals(user.getEmail()) && getType().equals(user.getType()) && getPassword().equals(user.getPassword());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getCell(), getEmail(), getType(), getPassword());
+        return Objects.hash(getIdUser(), getFirstName(), getLastName(), getCell(), getEmail(), getType(), getPassword());
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "idUser =" + idUser +
-                "firstName='" + firstName + '\'' +
+                "idUser=" + idUser +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", cell='" + cell + '\'' +
                 ", email='" + email + '\'' +
                 ", type='" + type + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
