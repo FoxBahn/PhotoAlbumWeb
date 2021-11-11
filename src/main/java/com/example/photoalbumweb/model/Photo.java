@@ -12,8 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import lombok.*;
 
 
-@EqualsAndHashCode(exclude = "users")
-@ToString
 @Entity
 @Table(name = "photo", schema = "Phillip")
 public class Photo implements Serializable {
@@ -32,13 +30,17 @@ public class Photo implements Serializable {
 //define that FK is fetched from idUser in user
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "idUser"),name = "Uploaded_IdUser"/*,referencedColumnName ="idUser"*/)
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @JoinColumn(foreignKey = @ForeignKey(name = "idUser"),name = "idUser"/*,referencedColumnName ="idUser"*/)
+//    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     private User users;
+
 
     @NotNull
     @Column(name = "Photo_Name")
     private String photoName;
+
+//    @JsonIgnore
+//    private long userParentId;
 
     public Photo( String urlLocation, User users, String photoName) {
         this.urlLocation = urlLocation;
@@ -48,6 +50,8 @@ public class Photo implements Serializable {
 
     public Photo() {
     }
+
+
 
     public long getIdPhoto() {
         return idPhoto;
@@ -73,6 +77,11 @@ public class Photo implements Serializable {
         this.users = users;
     }
 
+//    @JsonIgnore
+//    public Long getUserParentId (){
+//        return this.users.getId();
+//    }
+
     public String getPhotoName() {
         return photoName;
     }
@@ -80,6 +89,7 @@ public class Photo implements Serializable {
     public void setPhotoName(String photoName) {
         this.photoName = photoName;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -98,7 +108,7 @@ public class Photo implements Serializable {
     public String toString() {
         return "Photo{" +
                 "urlLocation='" + urlLocation + '\'' +
-                ", users=" + users+ '\'' +
+                ", users=" + users + '\'' +
                 ", photoName='" + photoName + '\'' +
                 '}';
     }

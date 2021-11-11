@@ -34,10 +34,21 @@ public class PhotoController {
     }
 
     //get image by id
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<Photo> getPhotoById(@PathVariable Long id) {
+        User user = new User();
         Photo photo = photoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Photo does not exist with ID: " + id));
+
+//        user.setId(photo.getUsers().getId());
+//        user.setFirstName(photo.getUsers().getFirstName());
+//        user.setLastName(photo.getUsers().getLastName());
+//        user.setCell(photo.getUsers().getCell());
+//        user.setEmail(photo.getUsers().getEmail());
+//        user.setType(photo.getUsers().getType());
+//        user.setPassword(photo.getUsers().getPassword());
+//
+//        photo.setUsers(user);
         return ResponseEntity.ok(photo);
     }
 
@@ -52,11 +63,18 @@ public class PhotoController {
     //delete images by url
 
 
-    //get images by url?
+    //update image by id
+    @PutMapping("{id}")
+    public ResponseEntity<Photo> updatePhoto(@PathVariable Long id, @RequestBody Photo photoDetails) {
+        Photo photo = photoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Photo does not exist with ID: " + id));
+        photo.setUrlLocation(photoDetails.getUrlLocation());
+        photo.setUsers(photoDetails.getUsers());
+        photo.setPhotoName(photoDetails.getPhotoName());
 
-    //get images by type?
 
-    //update image by url?
-
+        Photo updatedPhoto = photoRepository.save(photo);
+        return ResponseEntity.ok(updatedPhoto);
+    }
 
 }

@@ -62,6 +62,27 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public User(long idUser, @NotNull String firstName, @NotNull String lastName, @NotNull String cell, @NotNull String email, @NotNull String type, @NotNull String password, Set<Photo> photos) {
+        this.idUser = idUser;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.cell = cell;
+        this.email = email;
+        this.type = type;
+        this.password = password;
+        this.photos = photos;
+    }
+
+    public User(long idUser, @NotNull String firstName, @NotNull String lastName, @NotNull String cell, @NotNull String email, @NotNull String type, @NotNull String password) {
+        this.idUser = idUser;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.cell = cell;
+        this.email = email;
+        this.type = type;
+        this.password = password;
+    }
+
     public User() {
     }
 
@@ -133,6 +154,7 @@ public class User implements Serializable {
             p.setUsers(this);
         }
     }
+
 
 
     @Override

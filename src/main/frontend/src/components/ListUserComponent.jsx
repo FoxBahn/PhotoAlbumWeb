@@ -2,6 +2,7 @@ import { Container, Button } from "@mui/material";
 import React, { Component } from "react";
 import UserService from "../services/UserService";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import EditIcon from "@mui/icons-material/Edit";
 
 export default class ListUserComponent extends Component {
   constructor(props) {
@@ -11,13 +12,19 @@ export default class ListUserComponent extends Component {
       users: [],
     };
     this.addUser = this.addUser.bind(this);
+    this.editUser = this.editUser.bind(this);
   }
 
   /*Add component of UserService to fetch users from DB (REST API calls come here) */
   componentDidMount() {
-    UserService.getUsers().then((response) => {
-      this.setState({ users: response.data });
+    UserService.getUsers().then((res) => {
+      this.setState({ users: res.data });
     });
+  }
+
+  // METHOD to rout to the "/update-users/${id}" PAGE
+  editUser(id) {
+    this.props.history.push(`/update-users/${id}`);
   }
 
   // METHOD to rout to the "/add-user" PAGE
@@ -31,9 +38,6 @@ export default class ListUserComponent extends Component {
       <div>
         <h2 className="text-center">List of Users</h2>
         <div className="div">
-          {/* <button className="btn btn-primary" onClick={this.addUser}>
-            Add User
-          </button> */}
           <Button
             variant="contained"
             startIcon={<AddBoxIcon />}
@@ -53,6 +57,7 @@ export default class ListUserComponent extends Component {
                   <th> Cell Number</th>
                   <th> Email</th>
                   <th> User Access Type</th>
+                  <th> {/*Button Actions Column*/} </th>
                 </tr>
               </thead>
 
@@ -65,6 +70,21 @@ export default class ListUserComponent extends Component {
                     <td>{user.cell}</td>
                     <td>{user.email}</td>
                     <td>{user.type}</td>
+                    <td>
+                      <div className="div">
+                        <Button
+                          variant="contained"
+                          startIcon={<EditIcon />}
+                          onClick={() => {
+                            this.editUser(user.id);
+                          }}
+                          classname="btn btn-info"
+                        >
+                          {" "}
+                          Edit{" "}
+                        </Button>
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>
