@@ -47,50 +47,47 @@ export default class ListUserComponent extends Component {
             Add User{" "}
           </Button>
         </div>
-        <Container>
-          <div className="row">
-            <table className="table table-striped table-bordered">
-              <thead>
-                <tr>
-                  <th> First Name</th>
-                  <th> Last Name</th>
-                  <th> Cell Number</th>
-                  <th> Email</th>
-                  <th> User Access Type</th>
-                  <th> {/*Button Actions Column*/} </th>
-                </tr>
-              </thead>
+        <div className="row">
+          <table className="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th> First Name</th>
+                <th> Last Name</th>
+                <th> Cell Number</th>
+                <th> Email</th>
+                <th> User Access Type</th>
+                <th> {/*Button Actions Column*/} </th>
+              </tr>
+            </thead>
 
-              <tbody>
-                {this.state.users.map((user) => (
-                  <tr key={user.id}>
-                    <td>{user.firstName}</td>{" "}
-                    {/*references the tableName.columnName*/}
-                    <td>{user.lastName}</td>
-                    <td>{user.cell}</td>
-                    <td>{user.email}</td>
-                    <td>{user.type}</td>
-                    <td>
-                      <div className="div">
-                        <Button
-                          variant="contained"
-                          startIcon={<EditIcon />}
-                          onClick={() => {
-                            this.editUser(user.id);
-                          }}
-                          classname="btn btn-info"
-                        >
-                          {" "}
-                          Edit{" "}
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Container>
+            <tbody>
+              {this.state.users.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.firstName}</td>{" "}
+                  {/*references the tableName.columnName*/}
+                  <td>{user.lastName}</td>
+                  <td>{user.cell}</td>
+                  <td>{user.email}</td>
+                  <td>{user.type}</td>
+                  <td>
+                    <div className="div">
+                      <Button
+                        variant="contained"
+                        startIcon={<EditIcon />}
+                        onClick={() => {
+                          this.editUser(user.id);
+                        }}
+                        classname="btn btn-info"
+                      >
+                        Edit
+                      </Button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

@@ -18,7 +18,7 @@ function App() {
             <Route path="/users" component={ListUserComponent}></Route>
             <Route path="/add-users" component={CreateUserComponent}></Route>
             <Route
-              path="/update-users:id"
+              path="/update-users/:id"
               component={UpdateUserComponent}
             ></Route>
           </Switch>

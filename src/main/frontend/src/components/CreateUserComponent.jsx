@@ -7,6 +7,7 @@ export default class CreateUserComponent extends Component {
     super(props);
 
     this.state = {
+      // id: this.match.params.id,
       firstName: "",
       lastName: "",
       cell: "",

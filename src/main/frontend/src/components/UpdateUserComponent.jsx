@@ -6,7 +6,7 @@ export default class UpdateUserComponent extends Component {
     super(props);
 
     this.state = {
-      id: this.match.params.id,
+      id: this.props.match.params.id,
       firstName: "",
       lastName: "",
       cell: "",
@@ -39,9 +39,9 @@ export default class UpdateUserComponent extends Component {
     });
   }
 
-  //method to save enterd details to declaredvariables in above constructor
-  updateUser = (uU) => {
-    uU.preventDefault();
+  // method to save enterd details to declaredvariables in above constructor
+  updateUser = (e) => {
+    e.preventDefault();
     let user = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -160,18 +160,14 @@ export default class UpdateUserComponent extends Component {
                   </div>
                   <button
                     className="btn btn-success m-2"
-                    onClick={() => {
-                      this.updateUser();
-                    }}
+                    onClick={this.updateUser}
                   >
                     Save
                   </button>
                   {/* cancel button */}
                   <button
                     className="btn btn-danger m-2"
-                    onClick={() => {
-                      this.cancelUser.bind(this);
-                    }}
+                    onClick={this.cancelUser.bind(this)}
                     style={{ marginLeft: "10px" }}
                   >
                     Cancel
