@@ -1,8 +1,11 @@
 import { Container, Button } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import React, { Component } from "react";
 import UserService from "../services/UserService";
+
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default class ListUserComponent extends Component {
   constructor(props) {
@@ -13,6 +16,7 @@ export default class ListUserComponent extends Component {
     };
     this.addUser = this.addUser.bind(this);
     this.editUser = this.editUser.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   /*Add component of UserService to fetch users from DB (REST API calls come here) */
@@ -22,6 +26,14 @@ export default class ListUserComponent extends Component {
     });
   }
 
+  // METHOD to rout to the "/delete-users/${id}" PAGE
+  deleteUser(id) {
+    UserService.deleteUser(id).then((res) => {
+      this.setState({
+        users: this.state.users.filter((user) => user.id !== user.id),
+      });
+    });
+  }
   // METHOD to rout to the "/update-users/${id}" PAGE
   editUser(id) {
     this.props.history.push(`/update-users/${id}`);
@@ -39,6 +51,7 @@ export default class ListUserComponent extends Component {
         <h2 className="text-center">List of Users</h2>
         <div className="div">
           <Button
+            color="success"
             variant="contained"
             startIcon={<AddBoxIcon />}
             onClick={this.addUser}
@@ -72,14 +85,28 @@ export default class ListUserComponent extends Component {
                   <td>
                     <div className="div">
                       <Button
+                        style={{ marginLeft: "10px" }}
                         variant="contained"
                         startIcon={<EditIcon />}
                         onClick={() => {
                           this.editUser(user.id);
                         }}
-                        classname="btn btn-info"
+                        classname="p-5"
                       >
                         Edit
+                      </Button>
+
+                      <Button
+                        style={{ marginLeft: "10px" }}
+                        color="error"
+                        variant="contained"
+                        startIcon={<DeleteIcon />}
+                        onClick={() => {
+                          this.deleteUser(user.id);
+                        }}
+                        classname="p-5"
+                      >
+                        Delete
                       </Button>
                     </div>
                   </td>

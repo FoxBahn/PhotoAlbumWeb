@@ -5,12 +5,6 @@ import java.io.Serializable;
 import java.util.*;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
-import org.jetbrains.annotations.NotNull;
-
-
 @Entity
 @Table(name = "user", schema = "Phillip")
 public class User implements Serializable {
@@ -20,37 +14,31 @@ public class User implements Serializable {
     @Id
     @Column(name = "idUser")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idUser;
+    private Long idUser;
 
-    @NotNull
+
     @Column(name = "FName")
     private String firstName;
 
-    @NotNull
+
     @Column(name = "LName")
     private String lastName;
 
-    @NotNull
+
     @Column(name = "Cell")
     private String cell;
 
-    @NotNull
+
     @Column(name = "Email")
     private String email;
 
-    @NotNull
+
     @Column(name = "Type")
     private String type;
 
-    @NotNull
+
     @Column(name = "Password")
     private String password;
-
-//    @JsonIgnore
-    @JsonManagedReference
-    @OneToMany(mappedBy = "users",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
-    private Set<Photo> photos = new HashSet<Photo>();
-
 
 
     public User(String firstName, String lastName, String cell, String email, String type, String password) {
@@ -62,18 +50,8 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(long idUser, @NotNull String firstName, @NotNull String lastName, @NotNull String cell, @NotNull String email, @NotNull String type, @NotNull String password, Set<Photo> photos) {
-        this.idUser = idUser;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.cell = cell;
-        this.email = email;
-        this.type = type;
-        this.password = password;
-        this.photos = photos;
-    }
 
-    public User(long idUser, @NotNull String firstName, @NotNull String lastName, @NotNull String cell, @NotNull String email, @NotNull String type, @NotNull String password) {
+    public User(Long idUser,  String firstName,  String lastName,  String cell,  String email,  String type,  String password) {
         this.idUser = idUser;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -87,11 +65,11 @@ public class User implements Serializable {
     }
 
 
-    public long getId() {
+    public Long getId() {
         return idUser;
     }
 
-    public void setId(long idUser) {
+    public void setId(Long idUser) {
         this.idUser = idUser;
     }
 
@@ -143,19 +121,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Set<Photo> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(Set<Photo> photos) {
-        this.photos = photos;
-        for(Photo p : photos)
-        {
-            p.setUsers(this);
-        }
-    }
-
-
 
     @Override
     public boolean equals(Object o) {
@@ -183,3 +148,5 @@ public class User implements Serializable {
                 '}';
     }
 }
+
+

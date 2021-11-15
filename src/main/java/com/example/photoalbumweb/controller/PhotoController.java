@@ -29,28 +29,29 @@ public class PhotoController {
 
     // create image metadata (postmappping)
     @PostMapping("")
-    public Photo createPhoto(@RequestBody Photo photo){
-        return photoRepository.save(photo);
+    public Photo createPhoto(@RequestBody Photo photoDetails) {
+
+        return photoRepository.save(photoDetails);
     }
 
     //get image by id
     @GetMapping("{id}")
     public ResponseEntity<Photo> getPhotoById(@PathVariable Long id) {
-        User user = new User();
-        Photo photo = photoRepository.findById(id)
+        Photo photo = new Photo();
+
+        photo = photoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Photo does not exist with ID: " + id));
 
-//        user.setId(photo.getUsers().getId());
-//        user.setFirstName(photo.getUsers().getFirstName());
-//        user.setLastName(photo.getUsers().getLastName());
-//        user.setCell(photo.getUsers().getCell());
-//        user.setEmail(photo.getUsers().getEmail());
-//        user.setType(photo.getUsers().getType());
-//        user.setPassword(photo.getUsers().getPassword());
-//
-//        photo.setUsers(user);
-        return ResponseEntity.ok(photo);
-    }
+ return ResponseEntity.ok(photo);
+}
+
+
+    //////native query test get by id
+//    @GetMapping("{id}")
+//    public String getPhotoById(@PathVariable Long id) {
+//        User user = new User();
+//        return photoRepository.getPhotoUrlNative(id);
+//    }
 
     //delete images by id
 

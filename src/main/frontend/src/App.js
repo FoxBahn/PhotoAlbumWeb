@@ -6,6 +6,8 @@ import HeaderComponent from "./components/HeaderComponent";
 import ListUserComponent from "./components/ListUserComponent";
 import CreateUserComponent from "./components/CreateUserComponent";
 import UpdateUserComponent from "./components/UpdateUserComponent";
+import LoginComponent from "./components/LoginComponent";
+import RegisterComponent from "./components/RegisterComponent";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
               path="/update-users/:id"
               component={UpdateUserComponent}
             ></Route>
+            <Route path="/login" exact component={LoginComponent}></Route>
+            <Route path="/register" exact component={RegisterComponent}></Route>
           </Switch>
         </div>
         <FooterComponent />

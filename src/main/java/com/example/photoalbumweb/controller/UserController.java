@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -25,6 +27,8 @@ public class UserController {
         return userRepository.findAll();
     }
 
+
+
     // create employee (postmappping)
     @PostMapping("")
     public User createUser(@RequestBody User user) {
@@ -32,12 +36,21 @@ public class UserController {
     }
 
     // get user by id REST(getmapping)
+//    @GetMapping("{id}")
+//    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+//        User user = userRepository.findById(id)
+//                .orElseThrow(() -> new ResourceNotFoundException("User does not exist with ID: " + id));
+//        return ResponseEntity.ok(user);
+//    }
+
+    //native query test
     @GetMapping("{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User does not exist with ID: " + id));
+        User user = userRepository.getUserByIDNative(id);
+//                .orElseThrow(() -> new ResourceNotFoundException("User does not exist with ID: " + id));
         return ResponseEntity.ok(user);
     }
+
 
     // update user by id REST(PutMapping)
     @PutMapping("{id}")
@@ -56,13 +69,22 @@ public class UserController {
     }
 
     //delete user by id
+//    @DeleteMapping("{id}")
+//    public ResponseEntity<String> deleteUserBy(@PathVariable Long id){
+//        userRepository.deleteById(id);
+//        return new ResponseEntity<>("User with ID :" + id + " was deleted successfully", HttpStatus.OK);
+//    }
+
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable(name = "id") Long id){
-        userRepository.deleteById(id);
-        return new ResponseEntity<>("User with ID :" + id + " was deleted successfully", HttpStatus.OK);
+    public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable(name = "id") Long id){
+        User user = userRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("User with ID :" + id + " was deleted successfully"));
+
+        userRepository.delete(user);
+        Map<String,Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
-
-
 
 }
 

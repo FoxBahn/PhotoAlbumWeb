@@ -21,26 +21,23 @@ public class Photo implements Serializable {
     @Id
     @Column(name = "idPhoto")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idPhoto;
+    private Long idPhoto;
 
-    @NotNull
+
     @Column(name = "Url_Location")
     private String urlLocation;
 
 //define that FK is fetched from idUser in user
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "idUser"),name = "idUser"/*,referencedColumnName ="idUser"*/)
-//    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "idUser", referencedColumnName = "idUser", nullable = false)
     private User users;
 
 
-    @NotNull
+
     @Column(name = "Photo_Name")
     private String photoName;
 
-//    @JsonIgnore
-//    private long userParentId;
 
     public Photo( String urlLocation, User users, String photoName) {
         this.urlLocation = urlLocation;
@@ -52,12 +49,11 @@ public class Photo implements Serializable {
     }
 
 
-
-    public long getIdPhoto() {
+    public Long getIdPhoto() {
         return idPhoto;
     }
 
-    public void setIdPhoto(long idPhoto) {
+    public void setIdPhoto(Long idPhoto) {
         this.idPhoto = idPhoto;
     }
 
@@ -77,10 +73,6 @@ public class Photo implements Serializable {
         this.users = users;
     }
 
-//    @JsonIgnore
-//    public Long getUserParentId (){
-//        return this.users.getId();
-//    }
 
     public String getPhotoName() {
         return photoName;
@@ -96,12 +88,14 @@ public class Photo implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Photo)) return false;
         Photo photo = (Photo) o;
-        return getIdPhoto() == photo.getIdPhoto() && getUrlLocation().equals(photo.getUrlLocation()) && getPhotoName().equals(photo.getPhotoName());
+        return
+                idPhoto != null &&
+                idPhoto.equals(((Photo) o).getIdPhoto());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIdPhoto(), getUrlLocation(), getPhotoName());
+        return getClass().hashCode();
     }
 
     @Override
