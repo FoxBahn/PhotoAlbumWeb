@@ -102,7 +102,12 @@ export default class ListUserComponent extends Component {
                         variant="contained"
                         startIcon={<DeleteIcon />}
                         onClick={() => {
-                          this.deleteUser(user.id);
+                          if (
+                            window.confirm(
+                              "Are you sure you wish to delete this user?"
+                            )
+                          )
+                            this.deleteUser(user.id);
                         }}
                         classname="p-5"
                       >

@@ -16,6 +16,9 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUser;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idUser", referencedColumnName = "idUser")
+    private Set <SharedPhotos> sharedPhotos;
 
     @Column(name = "FName")
     private String firstName;
@@ -121,6 +124,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
+
+    public Set <SharedPhotos> getSharedPhotos() {
+        return sharedPhotos;
+    }
+
+    public void setSharedPhotos(Set<SharedPhotos> sharedPhotos) {
+        this.sharedPhotos = sharedPhotos;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -27,8 +27,6 @@ public class UserController {
         return userRepository.findAll();
     }
 
-
-
     // create employee (postmappping)
     @PostMapping("")
     public User createUser(@RequestBody User user) {
@@ -50,7 +48,6 @@ public class UserController {
 //                .orElseThrow(() -> new ResourceNotFoundException("User does not exist with ID: " + id));
         return ResponseEntity.ok(user);
     }
-
 
     // update user by id REST(PutMapping)
     @PutMapping("{id}")

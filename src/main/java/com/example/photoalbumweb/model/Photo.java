@@ -23,6 +23,11 @@ public class Photo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPhoto;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idPhoto", referencedColumnName = "idPhoto")
+    private Set<SharedPhotos> sharedPhotos;
+
+
 
     @Column(name = "Url_Location")
     private String urlLocation;
@@ -73,6 +78,13 @@ public class Photo implements Serializable {
         this.users = users;
     }
 
+    public Set<SharedPhotos> getSharedPhotos() {
+        return sharedPhotos;
+    }
+
+    public void setSharedPhotos(Set<SharedPhotos> sharedPhotos) {
+        this.sharedPhotos = sharedPhotos;
+    }
 
     public String getPhotoName() {
         return photoName;
