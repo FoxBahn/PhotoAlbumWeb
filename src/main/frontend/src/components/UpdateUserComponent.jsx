@@ -1,13 +1,12 @@
-//create user component for adding new users
 import React, { Component } from "react";
 import UserService from "../services/UserService";
 
-export default class CreateUserComponent extends Component {
+export default class UpdateUserComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // id: this.match.params.id,
+      id: this.props.match.params.id,
       firstName: "",
       lastName: "",
       cell: "",
@@ -16,20 +15,33 @@ export default class CreateUserComponent extends Component {
       password: "",
     };
 
-    this.cancelUser = this.cancelUser.bind(this);
-
     this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
     this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
     this.changeCellHandler = this.changeCellHandler.bind(this);
     this.changeEmailHandler = this.changeEmailHandler.bind(this);
     this.changeTypeHandler = this.changeTypeHandler.bind(this);
     this.changePasswordHandler = this.changePasswordHandler.bind(this);
-    this.saveUser = this.saveUser.bind(this);
+    this.updateUser = this.updateUser.bind(this);
+    this.cancelUser = this.cancelUser.bind(this);
   }
 
-  //method to save enterd details to declaredvariables in above constructor
-  saveUser = (sU) => {
-    sU.preventDefault();
+  componentDidMount() {
+    UserService.getUserById(this.state.id).then((res) => {
+      let user = res.data;
+      this.setState({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        cell: user.cell,
+        email: user.email,
+        type: user.type,
+        password: user.password,
+      });
+    });
+  }
+
+  // method to save enterd details to declaredvariables in above constructor
+  updateUser = (e) => {
+    e.preventDefault();
     let user = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -38,12 +50,38 @@ export default class CreateUserComponent extends Component {
       type: this.state.type,
       password: this.state.password,
     };
-    console.log("user=> " + JSON.stringify(user));
+    console.log("user => " + JSON.stringify(user));
+    console.log("id => " + JSON.stringify(this.state.id));
 
-    //setup to create user and return to user page
-    UserService.createUser(user).then((res) => {
+    //setup to update user and return to user page
+    UserService.updateUser(user, this.state.id).then((res) => {
       this.props.history.push("/users");
     });
+  };
+
+  //event handlers
+  changeFirstNameHandler = (event) => {
+    this.setState({ firstName: event.target.value });
+  };
+
+  changeLastNameHandler = (event) => {
+    this.setState({ lastName: event.target.value });
+  };
+
+  changeCellHandler = (event) => {
+    this.setState({ cell: event.target.value });
+  };
+
+  changeEmailHandler = (event) => {
+    this.setState({ email: event.target.value });
+  };
+
+  changeTypeHandler = (event) => {
+    this.setState({ type: event.target.value });
+  };
+
+  changePasswordHandler = (event) => {
+    this.setState({ password: event.target.value });
   };
 
   //method to cancel the edit and move back to Users PAGE and view users
@@ -51,39 +89,15 @@ export default class CreateUserComponent extends Component {
     this.props.history.push("/users");
   }
 
-  //event handlers
-  changeFirstNameHandler(event) {
-    this.setState({ firstName: event.target.value });
-  }
-
-  changeLastNameHandler(event) {
-    this.setState({ lastName: event.target.value });
-  }
-
-  changeCellHandler(event) {
-    this.setState({ cell: event.target.value });
-  }
-
-  changeEmailHandler(event) {
-    this.setState({ email: event.target.value });
-  }
-
-  changeTypeHandler(event) {
-    this.setState({ type: event.target.value });
-  }
-
-  changePasswordHandler(event) {
-    this.setState({ password: event.target.value });
-  }
-
   //layout of component that adds user
   render() {
     return (
       <div>
+        <br></br>
         <div className="container p-5">
           <div className="row">
             <div class="card col-md-6 ofsett-md-3 offset-md-3">
-              <h3 className="text-centre p-2"> Add User</h3>
+              <h3 className="text-centre p-2"> Update User</h3>
               <div className="card-body">
                 <form>
                   <div className="form-group">
@@ -142,11 +156,11 @@ export default class CreateUserComponent extends Component {
                       value={this.state.password}
                       onChange={this.changePasswordHandler}
                     />
-                    {/* save button */}
+                    {/* update button */}
                   </div>
                   <button
                     className="btn btn-success m-2"
-                    onClick={this.saveUser}
+                    onClick={this.updateUser}
                   >
                     Save
                   </button>
