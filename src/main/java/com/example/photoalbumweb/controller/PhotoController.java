@@ -24,7 +24,7 @@ public class PhotoController {
     @GetMapping("")
     public List<Photo> getAllPhotos() {
         List<Photo> photos = photoRepository.findAll();
-        return photoRepository.findAll();
+        return photos;
     }
 
     // create image metadata (postmappping)

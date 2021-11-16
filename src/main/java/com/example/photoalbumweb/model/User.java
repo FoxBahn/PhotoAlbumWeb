@@ -1,5 +1,7 @@
 package com.example.photoalbumweb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -16,6 +18,10 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUser;
 
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idUser", referencedColumnName = "idUser")
+    private Set <SharedPhotos> sharedPhotos;
 
     @Column(name = "FName")
     private String firstName;
@@ -121,6 +127,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
+
+    public Set <SharedPhotos> getSharedPhotos() {
+        return sharedPhotos;
+    }
+
+    public void setSharedPhotos(Set<SharedPhotos> sharedPhotos) {
+        this.sharedPhotos = sharedPhotos;
+    }
 
     @Override
     public boolean equals(Object o) {
