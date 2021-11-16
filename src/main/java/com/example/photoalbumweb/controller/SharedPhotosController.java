@@ -1,11 +1,13 @@
 package com.example.photoalbumweb.controller;
 
 import com.example.photoalbumweb.model.SharedPhotos;
+import com.example.photoalbumweb.model.SharedPhotosID;
 import com.example.photoalbumweb.repository.SharedPhotosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -40,14 +42,14 @@ public class SharedPhotosController {
 
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<SharedPhotos> getAllSharedPhotosByUserID(@PathVariable Long id) {
-        SharedPhotos sharedPhotos = sharedPhotosRepository.getSharedPhotosByNativeIDUser(id);
+    public ResponseEntity<List<SharedPhotos>> getAllSharedPhotosByUserID(@PathVariable Long id) {
+        List<SharedPhotos> sharedPhotos = sharedPhotosRepository.getSharedPhotosByNativeIDUser(id);
         return ResponseEntity.ok(sharedPhotos);
     }
 
     @GetMapping("/photos/{id}")
-    public ResponseEntity<SharedPhotos> getAllSharedPhotosByPhotoID(@PathVariable Long id) {
-        SharedPhotos sharedPhotos = sharedPhotosRepository.getSharedPhotosByNativeIDPhoto(id);
+    public ResponseEntity<List<SharedPhotos>> getAllSharedPhotosByPhotoID(@PathVariable Long id) {
+        List<SharedPhotos> sharedPhotos = sharedPhotosRepository.getSharedPhotosByNativeIDPhoto(id);
         return ResponseEntity.ok(sharedPhotos);
     }
 

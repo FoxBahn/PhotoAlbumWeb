@@ -13,7 +13,6 @@ public class SharedPhotos implements Serializable {
 
     private static final long serialVersionUID = -6611774608928420761L;
 
-
     @EmbeddedId
     private SharedPhotosID id;
 

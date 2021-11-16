@@ -23,6 +23,7 @@ public class Photo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPhoto;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "idPhoto", referencedColumnName = "idPhoto")
     private Set<SharedPhotos> sharedPhotos;
