@@ -21,6 +21,12 @@ export default class ListUserComponent extends Component {
 
   /*Add component of UserService to fetch users from DB (REST API calls come here) */
   componentDidMount() {
+    {
+      /* IMPORTANT !!!!!!!!!!!!!! add page load event if button is clicked and
+              user that is loged in is not admin only user that is 
+              logged in data is displayed and not all of the users */
+    }
+
     UserService.getUsers().then((res) => {
       this.setState({ users: res.data });
     });
