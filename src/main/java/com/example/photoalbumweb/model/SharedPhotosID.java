@@ -52,11 +52,11 @@ public class SharedPhotosID implements Serializable {
         return Objects.hash(getIdPhoto(), getIdUser());
     }
 
-    @Override
-    public String toString() {
-        return "SharedPhotosID{" +
-                "idPhoto=" + idPhoto +
-                ", idUser=" + idUser +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "SharedPhotosID{" +
+//                "idPhoto=" + idPhoto +
+//                ", idUser=" + idUser +
+//                '}';
+//    }
 }
