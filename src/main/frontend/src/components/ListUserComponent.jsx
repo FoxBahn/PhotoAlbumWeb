@@ -62,7 +62,6 @@ export default class ListUserComponent extends Component {
             startIcon={<AddBoxIcon />}
             onClick={this.addUser}
           >
-            {" "}
             Add User{" "}
           </Button>
         </div>
