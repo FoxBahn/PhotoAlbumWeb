@@ -3,7 +3,7 @@ import React, { Component, useState } from "react";
 import RestorePageIcon from "@mui/icons-material/RestorePage";
 import LoginIcon from "@mui/icons-material/Login";
 
-import { Container, Button } from "@mui/material";
+import { Container, Button, Paper } from "@mui/material";
 
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -38,7 +38,7 @@ class LoginComponent extends Component {
 
     return (
       <div>
-        <h2 className="justify-content-md-center">
+        <h2 className="justify-content-center p-4 div">
           {/* {show && props.message && (
             <Alert variant="success" onClose={() => setShow(false)} dismissible>
               {props.message}
@@ -49,76 +49,78 @@ class LoginComponent extends Component {
               {error}
             </Alert>
           )} */}
-          <Card className={"border border-dark bg-dark text-white"}>
-            <CardHeader>
-              {/* <FontAwesomeIcon icon={faSignInAlt} /> Login */}
-              <h2>Login</h2>
-            </CardHeader>
-            <Card>
-              <FormGroup>
+          <Paper style={{ display: "inline-block" }} width="20%">
+            <h2 className="div justify-content-center p-4 ">Login </h2>
+            <div>
+              <Card style={{ display: "inline-block" }}>
                 {/* <Form.Group> */}
+                <div>
+                  <FormGroup>
+                    <div>
+                      <input Width="10%" className>
+                        {/* <FontAwesomeIcon icon={faEnvelope} /> */}
+                      </input>
+
+                      <FormGroup
+                        required
+                        autoComplete="off"
+                        type="text"
+                        name="email"
+                        value={this.email}
+                        //   onChange={credentialChange}
+                        className={"bg-dark text-white"}
+                        placeholder="Enter Email Address"
+                      />
+                    </div>
+                  </FormGroup>
+                </div>
+
                 <FormGroup>
-                  <input>{/* <FontAwesomeIcon icon={faEnvelope} /> */}</input>
+                  {/* <Form.Group> */}
+                  <div>
+                    <input Width="10%"></input>
 
-                  <FormGroup
-                    required
-                    autoComplete="off"
-                    type="text"
-                    name="email"
-                    value={this.email}
-                    //   onChange={credentialChange}
-                    className={"bg-dark text-white"}
-                    placeholder="Enter Email Address"
-                  />
+                    <FormGroup
+                      required
+                      autoComplete="off"
+                      type="password"
+                      name="password"
+                      value={this.password}
+                      //   onChange={credentialChange}
+                      className={"bg-dark text-white"}
+                      placeholder="Enter Password"
+                    />
+                  </div>
                 </FormGroup>
-              </FormGroup>
-
-              <FormGroup>
-                {/* <Form.Group> */}
-
-                <input>{/* <FontAwesomeIcon icon={faLock} /> */}</input>
-
-                <FormGroup
-                  required
-                  autoComplete="off"
-                  type="password"
-                  name="password"
-                  value={this.password}
-                  //   onChange={credentialChange}
-                  className={"bg-dark text-white"}
-                  placeholder="Enter Password"
-                />
-              </FormGroup>
-            </Card>
-            <CardHeader style={{ textAlign: "right" }}>
-              <Button
-                size="sm"
-                type="button"
-                variant="success"
-                // onClick={validateUser}
-                startIcon={<LoginIcon />}
-                disabled={
-                  this.state.email.length === 0 ||
-                  this.state.password.length === 0
-                }
-              >
-                Login
-              </Button>{" "}
-              <Button
-                size="sm"
-                type="button"
-                variant="info"
-                startIcon={<RestorePageIcon />}
-                // onClick={resetLoginForm}
-                disabled={
-                  this.state.email.length === 0 &&
-                  this.state.password.length === 0
-                }
-              >
-                Reset
-              </Button>
-            </CardHeader>
-          </Card>
+              </Card>
+            </div>
+            <Button
+              size="sm"
+              type="button"
+              variant="success"
+              // onClick={validateUser}
+              startIcon={<LoginIcon />}
+              // disabled={
+              //   this.state.email.length === 0 ||
+              //   this.state.password.length === 0
+              // }
+            >
+              Login
+            </Button>{" "}
+            <Button
+              size="sm"
+              type="button"
+              variant="info"
+              startIcon={<RestorePageIcon />}
+              // onClick={resetLoginForm}
+              // disabled={
+              //   this.state.email.length === 0 &&
+              //   this.state.password.length === 0
+              // }
+            >
+              Reset
+            </Button>
+          </Paper>
         </h2>
       </div>
     );
