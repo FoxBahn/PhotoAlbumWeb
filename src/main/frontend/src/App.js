@@ -8,6 +8,7 @@ import CreateUserComponent from "./components/CreateUserComponent";
 import UpdateUserComponent from "./components/UpdateUserComponent";
 import LoginComponent from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
+import UploadImageComponent from "./components/UploadImageComponent";
 
 function App() {
   return (
@@ -25,6 +26,11 @@ function App() {
             ></Route>
             <Route path="/login" exact component={LoginComponent}></Route>
             <Route path="/register" exact component={RegisterComponent}></Route>
+            <Route
+              path="/upload_photos"
+              exact
+              component={UploadImageComponent}
+            ></Route>
           </Switch>
         </div>
         <FooterComponent />
