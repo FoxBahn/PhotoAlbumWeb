@@ -145,8 +145,7 @@ export default class ListUserComponent extends Component {
                       >
                         Delete
                       </Button>
-                    </div>
-                    <div>
+
                       <Button
                         style={{ marginLeft: "10px" }}
                         color="warning"
@@ -157,7 +156,7 @@ export default class ListUserComponent extends Component {
                         }}
                         classname="p-5"
                       >
-                        Delete
+                        SHARE
                       </Button>
                     </div>
                   </td>
