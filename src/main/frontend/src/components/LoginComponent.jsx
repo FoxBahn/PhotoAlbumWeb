@@ -2,26 +2,14 @@ import React, { Component, useState } from "react";
 // import { useDispatch } from "react-redux";
 import RestorePageIcon from "@mui/icons-material/RestorePage";
 import LoginIcon from "@mui/icons-material/Login";
-import {
-  Row,
-  Col,
-  Card,
-  Form,
-  InputGroup,
-  FormControl,
-  Button,
-  Alert,
-} from "react-bootstrap";
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   faSignInAlt,
-//   faEnvelope,
-//   faLock,
-//   faUndo,
-// } from "@fortawesome/free-solid-svg-icons";
+import { Container, Button } from "@mui/material";
 
-import authenticateUser from "../index";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import FormGroup from "@mui/material/FormGroup";
+
+// import authenticateUser from "../index";
 
 class LoginComponent extends Component {
   constructor(props) {
@@ -49,8 +37,8 @@ class LoginComponent extends Component {
     const { email, password } = this.state;
 
     return (
-      <Row className="justify-content-md-center">
-        <Col xs={5}>
+      <div>
+        <h2 className="justify-content-md-center">
           {/* {show && props.message && (
             <Alert variant="success" onClose={() => setShow(false)} dismissible>
               {props.message}
@@ -62,57 +50,47 @@ class LoginComponent extends Component {
             </Alert>
           )} */}
           <Card className={"border border-dark bg-dark text-white"}>
-            <Card.Header>
+            <CardHeader>
               {/* <FontAwesomeIcon icon={faSignInAlt} /> Login */}
               <h2>Login</h2>
-            </Card.Header>
-            <Card.Body>
-              <Form.Row>
+            </CardHeader>
+            <Card>
+              <FormGroup>
                 {/* <Form.Group> */}
-                <Form.Group as={Col}>
-                  <InputGroup>
-                    <InputGroup.Prepend>
-                      <InputGroup.Text>
-                        {/* <FontAwesomeIcon icon={faEnvelope} /> */}
-                      </InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl
-                      required
-                      autoComplete="off"
-                      type="text"
-                      name="email"
-                      value={this.email}
-                      //   onChange={credentialChange}
-                      className={"bg-dark text-white"}
-                      placeholder="Enter Email Address"
-                    />
-                  </InputGroup>
-                </Form.Group>
-              </Form.Row>
-              <Form.Row>
-                <Form.Group as={Col}>
-                  {/* <Form.Group> */}
-                  <InputGroup>
-                    <InputGroup.Prepend>
-                      <InputGroup.Text>
-                        {/* <FontAwesomeIcon icon={faLock} /> */}
-                      </InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl
-                      required
-                      autoComplete="off"
-                      type="password"
-                      name="password"
-                      value={this.password}
-                      //   onChange={credentialChange}
-                      className={"bg-dark text-white"}
-                      placeholder="Enter Password"
-                    />
-                  </InputGroup>
-                </Form.Group>
-              </Form.Row>
-            </Card.Body>
-            <Card.Footer style={{ textAlign: "right" }}>
+                <FormGroup>
+                  <input>{/* <FontAwesomeIcon icon={faEnvelope} /> */}</input>
+
+                  <FormGroup
+                    required
+                    autoComplete="off"
+                    type="text"
+                    name="email"
+                    value={this.email}
+                    //   onChange={credentialChange}
+                    className={"bg-dark text-white"}
+                    placeholder="Enter Email Address"
+                  />
+                </FormGroup>
+              </FormGroup>
+
+              <FormGroup>
+                {/* <Form.Group> */}
+
+                <input>{/* <FontAwesomeIcon icon={faLock} /> */}</input>
+
+                <FormGroup
+                  required
+                  autoComplete="off"
+                  type="password"
+                  name="password"
+                  value={this.password}
+                  //   onChange={credentialChange}
+                  className={"bg-dark text-white"}
+                  placeholder="Enter Password"
+                />
+              </FormGroup>
+            </Card>
+            <CardHeader style={{ textAlign: "right" }}>
               <Button
                 size="sm"
                 type="button"
@@ -139,10 +117,10 @@ class LoginComponent extends Component {
               >
                 Reset
               </Button>
-            </Card.Footer>
+            </CardHeader>
           </Card>
-        </Col>
-      </Row>
+        </h2>
+      </div>
     );
   }
 }

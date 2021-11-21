@@ -15,7 +15,7 @@ export default class HeaderComponent extends Component {
         <header margin={20}>
           <nav className=" navbar-expand-md navbar-dark bg-dark navbar-right px-3 ">
             {/*the <a></a> tag is used to put a link to another website in a word*/}
-            <a className="navbar-brand ml=auto px-5">Photo Album Application</a>
+            <a className="navbar-brand ml=auto p-5">Photo Album Application</a>
           </nav>
 
           <Navbar
