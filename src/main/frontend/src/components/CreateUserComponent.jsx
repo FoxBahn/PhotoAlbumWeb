@@ -83,7 +83,7 @@ export default class CreateUserComponent extends Component {
         <div className="container p-5">
           <div className="row">
             <div class="card col-md-6 ofsett-md-3 offset-md-3">
-              <h3 className="text-centre p-2"> Add User</h3>
+              <h3 className="text-centre p-2 div"> Add User </h3>
               <div className="card-body">
                 <form>
                   <div className="form-group">
