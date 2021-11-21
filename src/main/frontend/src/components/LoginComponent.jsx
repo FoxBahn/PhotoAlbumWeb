@@ -4,7 +4,7 @@ import RestorePageIcon from "@mui/icons-material/RestorePage";
 import LoginIcon from "@mui/icons-material/Login";
 
 import { Container, Button, Paper } from "@mui/material";
-
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import FormGroup from "@mui/material/FormGroup";
@@ -104,21 +104,28 @@ class LoginComponent extends Component {
               //   this.state.email.length === 0 ||
               //   this.state.password.length === 0
               // }
+              onClick={() => {
+                this.props.history.push("/upload_photos");
+              }}
             >
               Login
             </Button>{" "}
             <Button
+              onClick={() => {
+                this.props.history.push("/register");
+              }}
               size="sm"
               type="button"
               variant="info"
-              startIcon={<RestorePageIcon />}
+              startIcon={<PersonAddIcon />}
               // onClick={resetLoginForm}
               // disabled={
               //   this.state.email.length === 0 &&
               //   this.state.password.length === 0
+
               // }
             >
-              Reset
+              Register
             </Button>
           </Paper>
         </h2>
