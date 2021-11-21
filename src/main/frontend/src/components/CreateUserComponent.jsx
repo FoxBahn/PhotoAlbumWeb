@@ -8,7 +8,6 @@ export default class CreateUserComponent extends Component {
 
     this.state = {
       // id: this.match.params.id,
-      id: "",
       firstName: "",
       lastName: "",
       cell: "",
