@@ -68,5 +68,6 @@
   flex: 1;
   width: 400px;
   height: 300px;
+  align-items: center;
   /* resizemode: "contain"; */
 }

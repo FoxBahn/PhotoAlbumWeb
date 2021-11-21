@@ -5,6 +5,7 @@ import com.example.photoalbumweb.model.Photo;
 import com.example.photoalbumweb.model.User;
 import com.example.photoalbumweb.repository.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +45,15 @@ public class PhotoController {
 
  return ResponseEntity.ok(photo);
 }
+
+    @GetMapping("")
+    public List<Photo> getAllPhotosByName(@Param("name") String name) {
+        List<Photo> results = photoRepository.findByTitleLike("name");
+//        assertEquals(3, results.size());
+        return results;
+
+    }
+
 
 
     //////native query test get by id
