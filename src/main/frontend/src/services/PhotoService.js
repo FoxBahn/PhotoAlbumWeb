@@ -8,6 +8,11 @@ class PhotoService {
   getPhotos(photo) {
     return axios.get(PHOTO_API_BASE_URL);
   }
+
+  getPhotosByName(photoName) {
+    return axios.get(PHOTO_API_BASE_URL + "/" + photoName);
+  }
+
   //   //method to call REST API axios postMapping to create a new user
   //   createUser(user) {
   //     return axios.post(USER_API_BASE_URL, user);

@@ -15,10 +15,6 @@ export default class ListUserComponent extends Component {
       photos: [],
 
       image: null,
-      viewImage: null,
-
-      imageHeight: "",
-      imageWidth: "",
     };
 
     this.addPhoto = this.addPhoto.bind(this);
@@ -39,6 +35,15 @@ export default class ListUserComponent extends Component {
     });
   }
 
+  filterPhotos(photoName) {
+    PhotoService.getPhotosByName(photoName).then((res) => {
+      this.setState({
+        photoName: this.state.photoName.filter(
+          (photoName) => photoName !== photoName
+        ),
+      });
+    });
+  }
   // METHOD to rout to the "/delete-users/${id}" PAGE
   deletePhoto(id) {
     PhotoService.deletePhoto(id).then((res) => {
@@ -61,16 +66,17 @@ export default class ListUserComponent extends Component {
   render() {
     return (
       <div>
-        <h2 className="text-center">List of Photos</h2>
+        <h2 className="text-center div">List of Photos</h2>
         <div className="div">
-          <Button
-            color="success"
-            variant="contained"
-            startIcon={<AddBoxIcon />}
-            onClick={this.addUser}
-          >
-            Add User{" "}
-          </Button>
+          <label>Search Image By Name: </label>
+          <input
+            placeholder="eg. Jackal"
+            name="imageName"
+            className="form-control"
+            onChange={() => {
+              this.filterPhotos(this.name);
+            }}
+          />
         </div>
         <div className="row">
           <table className="table table-striped table-bordered">
@@ -86,23 +92,25 @@ export default class ListUserComponent extends Component {
             <tbody>
               {this.state.photos.map((photo) => (
                 <tr key={photo.id}>
-                  <img
-                    className="div"
-                    style={{
-                      // flex: 1,
-                      height: this.imageHeight,
-                      width: this.imageWidth,
-                      // figure out your image aspect ratio
-                      aspectRatio: 16 / 9,
-                    }}
-                    src={
-                      photo.urlLocation ||
-                      "https://i1.wp.com/feelsafemask.in/wp-content/uploads/2020/09/qi-bin-w4hbafegiac-unsplash.jpg?resize=300%2C&ssl=1"
-                    }
-                    alt="Uploaded image"
-                    height="300"
-                    widdth="400"
-                  ></img>{" "}
+                  <div align="left" height="35%" width="35%">
+                    <img
+                      className="div image"
+                      style={{
+                        // flex: 1,
+                        height: this.imageHeight,
+                        width: this.imageWidth,
+                        // figure out your image aspect ratio
+                        aspectRatio: 16 / 9,
+                      }}
+                      src={
+                        photo.urlLocation ||
+                        "https://i1.wp.com/feelsafemask.in/wp-content/uploads/2020/09/qi-bin-w4hbafegiac-unsplash.jpg?resize=300%2C&ssl=1"
+                      }
+                      alt="Uploaded image"
+                      height="300"
+                      widdth="400"
+                    ></img>{" "}
+                  </div>
                   {/*references the tableName.columnName*/}
                   <td>{photo.photoName}</td>
                   <td>

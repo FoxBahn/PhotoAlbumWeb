@@ -105,7 +105,7 @@ export default class UploadImageComponent extends Component {
   render() {
     return (
       <div>
-        <h2 className="text-center p-2">Upload a New Photo</h2>
+        <h2 className="text-center p-2 div">Upload a New Photo</h2>
         <div className="div" align="left">
           <Paper elevation={3} className="div p-3">
             <form>

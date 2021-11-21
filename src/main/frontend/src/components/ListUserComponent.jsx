@@ -54,7 +54,7 @@ export default class ListUserComponent extends Component {
   render() {
     return (
       <div>
-        <h2 className="text-center">List of Users</h2>
+        <h2 className="text-center div">List of Users</h2>
         <div className="div">
           <Button
             color="success"
