@@ -54,7 +54,7 @@ export default class ListUserComponent extends Component {
   render() {
     return (
       <div>
-        <h2 className="text-center">List of Users</h2>
+        <h2 className="text-center p-4">List of Users</h2>
         <div className="div">
           <Button
             color="success"
@@ -109,7 +109,8 @@ export default class ListUserComponent extends Component {
                         onClick={() => {
                           if (
                             window.confirm(
-                              "Are you sure you wish to delete this user?"
+                              "Are you sure you wish to delete this user?",
+                              this.props.history.push("/users")
                             )
                           )
                             this.deleteUser(user.id);

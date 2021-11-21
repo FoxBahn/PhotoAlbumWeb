@@ -11,8 +11,11 @@ export default class FooterComponent extends Component {
     return (
       <Paper elevation={3}>
         <div>
-          <footer className="footer">
-            <span className="text-muted"> All Rights Reserved 2021 </span>
+          <footer className="footer" posision="fixed">
+            <span className="text-muted">
+              {" "}
+              All Rights Reserved 2021 - Phillip Swart 32161506{" "}
+            </span>
           </footer>
         </div>
       </Paper>

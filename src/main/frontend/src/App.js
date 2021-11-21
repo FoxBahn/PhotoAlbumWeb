@@ -9,6 +9,7 @@ import UpdateUserComponent from "./components/UpdateUserComponent";
 import LoginComponent from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import UploadImageComponent from "./components/UploadImageComponent";
+import ViewImageComponent from "./components/ViewImageComponent";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <HeaderComponent />
         <div className="container">
           <Switch>
-            <Route path="/" exact component={ListUserComponent}></Route>
+            <Route path="/" exact component={UploadImageComponent}></Route>
             <Route path="/users" component={ListUserComponent}></Route>
             <Route path="/add-users" component={CreateUserComponent}></Route>
             <Route
@@ -26,6 +27,7 @@ function App() {
             ></Route>
             <Route path="/login" exact component={LoginComponent}></Route>
             <Route path="/register" exact component={RegisterComponent}></Route>
+            <Route path="/photos" component={ViewImageComponent}></Route>
             <Route
               path="/upload_photos"
               exact
