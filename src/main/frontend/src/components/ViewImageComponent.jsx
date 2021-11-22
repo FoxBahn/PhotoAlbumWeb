@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid";
 import React, { Component } from "react";
 import PhotoService from "../services/PhotoService";
 
+import ShareIcon from "@mui/icons-material/Share";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -143,6 +144,19 @@ export default class ListUserComponent extends Component {
                         classname="p-5"
                       >
                         Delete
+                      </Button>
+
+                      <Button
+                        style={{ marginLeft: "10px" }}
+                        color="warning"
+                        variant="contained"
+                        startIcon={<ShareIcon />}
+                        onClick={() => {
+                          // this.sharePhoto(photo.id);
+                        }}
+                        classname="p-5"
+                      >
+                        SHARE
                       </Button>
                     </div>
                   </td>

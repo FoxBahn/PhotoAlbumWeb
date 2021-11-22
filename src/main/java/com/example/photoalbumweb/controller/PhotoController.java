@@ -46,13 +46,14 @@ public class PhotoController {
  return ResponseEntity.ok(photo);
 }
 
-    @GetMapping("")
-    public List<Photo> getAllPhotosByName(@Param("name") String name) {
-        List<Photo> results = photoRepository.findByTitleLike("name");
-//        assertEquals(3, results.size());
-        return results;
-
-    }
+//search image by name in title( cant use becuase sharing same path as get all mapping
+//    @GetMapping("")
+//    public List<Photo> getAllPhotosByName(@Param("name") String name) {
+//        List<Photo> results = photoRepository.findByTitleLike("name");
+////        assertEquals(3, results.size());
+//        return results;
+//
+//    }
 
 
 
