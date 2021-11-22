@@ -148,7 +148,7 @@ export default class RegisterComponent extends Component {
                   {/* cancel button */}
                   <button
                     className="btn btn-danger m-2"
-                    onClick={this.cancelUser.bind(this)}
+                    onClick={() => this.props.history.push("/login")}
                     style={{ marginLeft: "10px" }}
                   >
                     Cancel
