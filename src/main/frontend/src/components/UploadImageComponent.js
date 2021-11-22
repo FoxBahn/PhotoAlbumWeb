@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 // import { getStorage, ref } from "firebase/storage";
 import { storage } from "../firebase";
+import PhotoService from "../services/PhotoService";
 
 // import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
@@ -18,7 +19,7 @@ export default class UploadImageComponent extends Component {
     this.state = {
       // id: this.props.match.params.id,
       // url: "",
-      // idUser: "",
+      idUser: "4",
       // photoName: "",
 
       image: null,
@@ -32,25 +33,28 @@ export default class UploadImageComponent extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
 
-    //   this.cancelPhoto = this.cancelPhoto.bind(this);
+      // this.cancelPhoto = this.cancelPhoto.bind(this);
     //   this.changeUrlhandler = this.changeUrlhandler.bind(this);
     //   this.changeIdUserHandler = this.changeIdUserHandler.bind(this);
     //   this.changePhotoNameHandler = this.changePhotoNameHandler.bind(this);
-    //   this.changeSavePhoto = this.changeSavePhotoHandler.bind(this);
+    //   this.savePhoto = this.savePhoto.bind(this);
   }
 
   // //method to save enterd details to declaredvariables in above constructor
-  // savePhoto(sP) {
-  //   sP.preventDefault();
-  //   let photo = {
-  //     url: this.props.match.url,
-  //     idUser: this.props.match.idUser,
-  //     photoName: this.props.match.photoName,
-  //   };
-  //   console.log("photo=>" + JSON.stringify(photo));
+  savePhoto(sP) {
+    sP.preventDefault();
+    let photo = {
+      url: this.props.match.url,
+      idUser: this.props.match.idUser,
+      photoName: this.props.match.photoName,
+    };
+    console.log("photo=>" + JSON.stringify(photo));
 
-  //   //create photo and return to list of photos PAGE
-  // }
+    //create photo and return to list of photos PAGE
+    PhotoService.createPhoto(photo).then((res) => {
+      this.props.history.push("/photos");
+    });
+  }
 
   /////////////
   handleChange = (e) => {
@@ -143,7 +147,7 @@ export default class UploadImageComponent extends Component {
                 </Button>
                 <progress
                   value={this.state.progress}
-                  max="125"
+                  max="100"
                   variant="information"
                 />
               </Stack>

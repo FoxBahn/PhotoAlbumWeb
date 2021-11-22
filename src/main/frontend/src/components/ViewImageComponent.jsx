@@ -140,6 +140,7 @@ export default class ListUserComponent extends Component {
                             )
                           )
                             this.deletePhoto(photo.id);
+                          this.props.history.push('/photos')
                         }}
                         classname="p-5"
                       >

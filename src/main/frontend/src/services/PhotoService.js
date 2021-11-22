@@ -14,9 +14,9 @@ class PhotoService {
   }
 
   //   //method to call REST API axios postMapping to create a new user
-  //   createUser(user) {
-  //     return axios.post(USER_API_BASE_URL, user);
-  //   }
+    createPhoto(photo) {
+      return axios.post(PHOTO_API_BASE_URL, photo);
+    }
   //   getUserById(userId) {
   //     return axios.get(USER_API_BASE_URL + "/" + userId);
   //   }
